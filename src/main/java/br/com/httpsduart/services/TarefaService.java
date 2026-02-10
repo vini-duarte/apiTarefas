@@ -33,7 +33,7 @@ public class TarefaService {
 		return "Tarefa inserida com sucesso";
 	}
 	
-	public String editar(UUID id) {
+	public String editar(UUID id, Tarefa tarefa) {
 		tarefaRepository.findById(id);
 		
 		return null;
