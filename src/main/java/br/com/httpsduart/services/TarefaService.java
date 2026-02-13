@@ -29,13 +29,25 @@ public class TarefaService {
 	}
 	
 	public String inserir(Tarefa tarefa) {
+		tarefa.setId(UUID.randomUUID());
+		
 		tarefaRepository.save(tarefa);
 		return "Tarefa inserida com sucesso";
 	}
 	
-	public String editar(UUID id, Tarefa tarefa) {
+	public Tarefa editar(UUID id, Tarefa tarefaAtualizada) {
 		tarefaRepository.findById(id);
 		
-		return null;
+		Tarefa tarefa = new Tarefa();
+		tarefa.setId(id);
+		tarefa.setNome(tarefaAtualizada.getNome());
+		tarefa.setDataEntrega(tarefaAtualizada.getDataEntrega());
+		tarefa.setDataEntrega(tarefaAtualizada.getDataEntrega());
+		tarefa.setObservacoes(tarefaAtualizada.getObservacoes());
+		tarefa.setPrioridade(tarefaAtualizada.getPrioridade());
+		tarefa.setConcluida(tarefaAtualizada.getConcluida());
+		tarefa.setCategoria(tarefaAtualizada.getCategoria());
+		
+		return tarefaRepository.save(tarefa);
 	}
 }

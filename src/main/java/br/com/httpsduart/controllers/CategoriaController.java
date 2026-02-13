@@ -30,7 +30,7 @@ public class CategoriaController {
 	}
 
 	@PutMapping("/{id}")
-	public String put(@PathVariable UUID id, @RequestBody Categoria categoria) {
+	public Categoria put(@PathVariable UUID id, @RequestBody Categoria categoria) {
 		return categoriaservice.editar(id, categoria);
 	}
 

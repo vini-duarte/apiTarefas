@@ -1,7 +1,6 @@
 package br.com.httpsduart.entities;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 import br.com.httpsduart.enums.NivelPrioridade;
@@ -12,6 +11,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jdk.jfr.BooleanFlag;
 import lombok.Data;
@@ -22,7 +22,7 @@ import lombok.Data;
 public class Tarefa {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO )
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
 	@Column(name = "nome", nullable = false, length = 25)
@@ -46,7 +46,7 @@ public class Tarefa {
 	@BooleanFlag
 	private Boolean concluida;
 	
-	
-	private List<Categoria> categorias;
+	@ManyToOne
+	private Categoria categoria;
 
 }

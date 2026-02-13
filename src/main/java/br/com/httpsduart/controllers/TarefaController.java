@@ -30,7 +30,7 @@ public class TarefaController {
 	}
 
 	@PutMapping("/{id}")
-	public String put(@PathVariable UUID id, @RequestBody Tarefa tarefa) {
+	public Tarefa put(@PathVariable UUID id, @RequestBody Tarefa tarefa) {
 		return tarefaservice.editar(id, tarefa);
 	}
 

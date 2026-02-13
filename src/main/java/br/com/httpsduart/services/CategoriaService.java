@@ -5,32 +5,38 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.httpsduart.entities.Categoria;
 import br.com.httpsduart.repositories.CategoriaRepository;
 
+@Service
 public class CategoriaService {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
 	public String inserir(Categoria categoria) {
+		categoria.setId(UUID.randomUUID());
 		categoriaRepository.save(categoria);
 		return "Categoria salva com sucesso "+ categoria;
 	}
 
-	public String editar(UUID id, Categoria categoria) {
-		// TODO Auto-generated method stub
-		return null;
+	public Categoria editar(UUID id, Categoria categoriaAtualizada) {
+		
+		Categoria categoria = new Categoria();
+		categoria.setId(id);
+		categoria.setNome(categoriaAtualizada.getNome());
+		categoria.setInformacoes(categoriaAtualizada.getInformacoes());
+		
+		return categoriaRepository.save(categoria);
 	}
 
 	public Optional<Categoria> getById(UUID id) {
-		// TODO Auto-generated method stub
 		return categoriaRepository.findById(id);
 	}
 
 	public List<Categoria> getAll() {
-		// TODO Auto-generated method stub
 		return categoriaRepository.findAll();
 	}
 
