@@ -1,7 +1,6 @@
 package br.com.httpsduart.controllers;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +34,13 @@ public class TarefaController {
 	}
 
 	@GetMapping("/{id}")
-	public Optional<Tarefa> getById(@PathVariable UUID id) {
-		return tarefaservice.getById(id);
+	public Tarefa getById(@PathVariable UUID id) {
+		return tarefaservice.buscarPorId(id);
 	}
 
 	@GetMapping
 	public List<Tarefa> getAll() {
-		return tarefaservice.getAll();
+		return tarefaservice.listarTodas();
 	}
 
 	@DeleteMapping("/{id}")

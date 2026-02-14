@@ -3,6 +3,8 @@ package br.com.httpsduart.entities;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.httpsduart.enums.NivelPrioridade;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +13,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jdk.jfr.BooleanFlag;
@@ -46,7 +49,9 @@ public class Tarefa {
 	@BooleanFlag
 	private Boolean concluida;
 	
+	@JsonBackReference
 	@ManyToOne
+	@JoinColumn(name = "categoria _id")
 	private Categoria categoria;
 
 }

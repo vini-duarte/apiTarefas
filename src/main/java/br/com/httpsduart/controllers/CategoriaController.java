@@ -1,7 +1,6 @@
 package br.com.httpsduart.controllers;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +34,13 @@ public class CategoriaController {
 	}
 
 	@GetMapping("/{id}")
-	public Optional<Categoria> getById(@PathVariable UUID id) {
-		return categoriaservice.getById(id);
+	public Categoria getById(@PathVariable UUID id) {
+		return categoriaservice.buscarPorId(id);
 	}
 
 	@GetMapping
 	public List<Categoria> getAll() {
-		return categoriaservice.getAll();
+		return categoriaservice.listarTodas();
 	}
 
 	@DeleteMapping("/{id}")

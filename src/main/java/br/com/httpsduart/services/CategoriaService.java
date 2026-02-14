@@ -1,7 +1,6 @@
 package br.com.httpsduart.services;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +16,14 @@ public class CategoriaService {
 	private CategoriaRepository categoriaRepository;
 	
 	public String inserir(Categoria categoria) {
-		categoria.setId(UUID.randomUUID());
+		
 		categoriaRepository.save(categoria);
 		return "Categoria salva com sucesso "+ categoria;
 	}
 
 	public Categoria editar(UUID id, Categoria categoriaAtualizada) {
+		buscarPorId(id);
+		
 		
 		Categoria categoria = new Categoria();
 		categoria.setId(id);
@@ -32,15 +33,18 @@ public class CategoriaService {
 		return categoriaRepository.save(categoria);
 	}
 
-	public Optional<Categoria> getById(UUID id) {
-		return categoriaRepository.findById(id);
+	public Categoria buscarPorId(UUID id) {
+		return categoriaRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
 	}
 
-	public List<Categoria> getAll() {
+	public List<Categoria> listarTodas() {
 		return categoriaRepository.findAll();
 	}
 
 	public String excluir(UUID id) {
+		buscarPorId(id);
+		
 		categoriaRepository.deleteById(id);
 		return "Categoria com id: " + id + " excluída com sucesso";
 	}
