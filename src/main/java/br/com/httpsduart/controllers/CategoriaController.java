@@ -25,7 +25,9 @@ public class CategoriaController {
 
 	@PostMapping
 	public String post(@RequestBody Categoria categoria) {
-		return categoriaservice.inserir(categoria);
+		
+		categoriaservice.inserir(categoria);
+		return "Categoria salva com sucesso " + categoria;
 	}
 
 	@PutMapping("/{id}")

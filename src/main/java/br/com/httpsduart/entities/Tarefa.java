@@ -3,6 +3,8 @@ package br.com.httpsduart.entities;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import br.com.httpsduart.enums.NivelPrioridade;
@@ -31,7 +33,8 @@ public class Tarefa {
 	@Column(name = "nome", nullable = false, length = 25)
 	private String nome;
 	
-	@Column(name = "dataInicio", nullable = false)
+	@CreationTimestamp
+	@Column(name = "dataInicio", nullable = false, updatable = false)
 	private LocalDateTime dataInicio;
 	
 	

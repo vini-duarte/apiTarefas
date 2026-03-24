@@ -3,8 +3,6 @@ package br.com.httpsduart.entities;
 import java.util.List;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +28,6 @@ public class Categoria {
 	@Column(name = "informacoes", nullable = false)
 	private String informacoes;	
 	
-	@JsonManagedReference
 	@OneToMany
 	@JoinColumn(name = "tarefas_id")
 	private List<Tarefa> tarefas;
